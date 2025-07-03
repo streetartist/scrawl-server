@@ -37,9 +37,4 @@
       "methods": ["GET"]
     }
   ],
-  "env": {
-    "DATABASE_URL": "@supabase_db_url"
-  }
 }
-
-
