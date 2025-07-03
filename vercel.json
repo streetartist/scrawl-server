@@ -1,0 +1,43 @@
+{
+  "builds": [
+    {
+      "src": "api/*.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/register",
+      "dest": "/api/register.py",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/api/([^/]+)/set",
+      "dest": "/api/set.py",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/api/([^/]+)/get",
+      "dest": "/api/get.py",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/api/([^/]+)/all",
+      "dest": "/api/all.py",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/api/cleanup",
+      "dest": "/api/cleanup.py",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/api/health",
+      "dest": "/api/health.py",
+      "methods": ["GET"]
+    }
+  ],
+  "env": {
+    "DATABASE_URL": "@supabase_db_url"
+  }
+}
