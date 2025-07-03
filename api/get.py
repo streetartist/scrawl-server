@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from utils.db import get_db, validate_api_key, update_project_access_time
+from sqlalchemy import text  # 添加这行导入
 
 app = Flask(__name__)
 
