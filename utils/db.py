@@ -4,11 +4,18 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 import uuid
 import time
 
-# 从环境变量获取数据库连接字符串
+# 从环境变量获取数据库连接字符串（使用您提供的格式）
 DATABASE_URL = os.getenv('DATABASE_URL')
 
-# 创建数据库引擎
-engine = create_engine(DATABASE_URL)
+# 创建数据库引擎（使用连接池参数）
+engine = create_engine(
+    DATABASE_URL,
+    pool_size=5,           # 连接池大小
+    max_overflow=10,       # 允许的最大连接数（pool_size + max_overflow）
+    pool_recycle=300,      # 连接回收时间（秒）
+    pool_pre_ping=True     # 每次使用前检查连接是否有效
+)
+
 db_session = scoped_session(sessionmaker(
     autocommit=False,
     autoflush=False,
@@ -16,7 +23,7 @@ db_session = scoped_session(sessionmaker(
 ))
 
 def init_db():
-    """初始化数据库"""
+    """初始化数据库（如果表不存在则创建）"""
     try:
         # 创建项目表
         db_session.execute(text("""
