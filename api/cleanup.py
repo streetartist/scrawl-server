@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from utils.db import get_db
+from sqlalchemy import text  # 添加这行导入
 import time
 import os
 
