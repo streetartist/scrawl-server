@@ -36,5 +36,5 @@
       "dest": "/api/health.py",
       "methods": ["GET"]
     }
-  ],
+  ]
 }
